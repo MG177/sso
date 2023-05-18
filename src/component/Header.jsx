@@ -14,7 +14,10 @@ export default function Header() {
   return (
     <div className="flex flex-row top-0 justify-between sticky px-5 py-5 bg-bw1 h-fit rounded-b-main shadow offset-y-1px blur-14 font-semibold font-main text-bw3 min-w-fit">
       <div className="flex flex-row gap-4 text-title1">
-        <Link to="/dashboard/log" className="flex flex-col align-middle gap-1">
+        <Link
+          to="/dashboard/log"
+          className="flex flex-col align-middle gap-1 mx-1 transition ease-in-out hover:scale-110"
+        >
           <div>User Log</div>
           {location.pathname.startsWith('/dashboard/log') && (
             <hr className="bg-bw4 h-0.5 border-0"></hr>
@@ -22,7 +25,7 @@ export default function Header() {
         </Link>
         <Link
           to="/dashboard/userManager"
-          className="flex flex-col align-middle gap-1"
+          className="flex flex-col align-middle gap-1 mx-1 transition ease-in-out hover:scale-110"
         >
           <div>User Manager</div>
           {location.pathname.startsWith('/dashboard/userManager') && (
@@ -31,7 +34,7 @@ export default function Header() {
         </Link>
         <Link
           to="/dashboard/appManager"
-          className="flex flex-col align-middle gap-1"
+          className="flex flex-col align-middle gap-1 mx-1 transition ease-in-out hover:scale-110"
         >
           <div>App Manager</div>
           {location.pathname.startsWith('/dashboard/appManager') && (

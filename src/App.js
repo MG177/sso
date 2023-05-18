@@ -1,6 +1,7 @@
 import './App.css';
 import Dashboard from './page/Dashboard';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import not_found from './media/404 Error-bro.svg';
 
 //theme
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
@@ -15,7 +16,21 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/*" element={<Dashboard />} />
+        <Route path="/dashboard/*" element={<Dashboard />} />
+        <Route
+          path="*"
+          element={
+            <div className="w-full h-screen flex flex-col items-center justify-center">
+              <img src={not_found} className="object-contain w-[80vh]" />
+              <Link
+                to="/"
+                className="m-4 w-fit h-fit flex p-4 px-20 bg-[#8d8dd0] rounded-lg text-white font-bold items-center justify-center"
+              >
+                Back
+              </Link>
+            </div>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

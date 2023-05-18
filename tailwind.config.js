@@ -4,10 +4,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        1: '#f4f7f5',
-        2: '#eeeeee',
-        3: '#575a5e',
-        4: '#121212',
+        bw1: '#f4f7f5',
+        bw2: '#eeeeee',
+        bw3: '#575a5e',
+        bw4: '#121212',
         Positive: '#03cea4',
         'Primary Color': '#272c50',
         Negative: '#d94032',
@@ -17,8 +17,8 @@ module.exports = {
       fontSize: {
         caption: '0.625rem',
         body: '0.8125rem',
-        title1: '1rem',
-        title2: '1.25rem',
+        title2: '1rem',
+        title1: '1.25rem',
         h5: '1.5625rem',
         h4: '1.9375rem',
         h2: '3.0625rem',
@@ -26,12 +26,15 @@ module.exports = {
         h1: '3.8125rem'
       },
       fontFamily: {
-        fredoka: 'Fredoka'
+        main: 'Fredoka'
       },
       boxShadow: {
         Shadow: '0px -1px 14px 0px rgba(0,0,0,0.25)'
+      },
+      borderRadius: {
+        main: '14px'
       }
     }
   },
   plugins: []
-}
+};

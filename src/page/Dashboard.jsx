@@ -36,6 +36,10 @@ function Log() {
       </div>
     );
   };
+  const time = (rowData) => {
+    const { date, time } = rowData;
+    return <div>{`${date} at ${time}`}</div>;
+  };
   return (
     <div>
       <div className="w-full h-fit bg-bw2">
@@ -46,7 +50,7 @@ function Log() {
           <Search />
         </div>
       </div>
-      <div className="h-[70vh] rounded-main shadow-lg border-bw2 overflow-hidden">
+      <div className="h-[70vh] rounded-main shadow-lg border-bw2 overflow-hidden bg-bw1">
         <DataTable
           ref={dt}
           value={log}
@@ -54,8 +58,8 @@ function Log() {
           rows={15}
           rowsPerPageOptions={[15, 25, 50]}
           size="sm"
-          sortField="date"
-          sortOrder={-1}
+          sortField="id"
+          sortOrder={1}
           removableSort
           scrollable
           scrollHeight="flex"
@@ -67,7 +71,7 @@ function Log() {
           <Column field="nim" header="NIP/NIM" className="font-bold" />
           <Column field="name" header="Name" />
           <Column field="app" header="App" />
-          <Column field="date" header="Date & Time" />
+          <Column body={time} header="Date & Time" />
           <Column body={status} header="Date & Time" />
         </DataTable>
       </div>
@@ -135,7 +139,7 @@ function UserManager() {
           <Search />
         </div>
       </div>
-      <div className="h-[70vh] rounded-main shadow-lg border-bw2 overflow-hidden">
+      <div className="h-[70vh] rounded-main shadow-lg border-bw2 overflow-hidden bg-bw1">
         <DataTable
           ref={dt}
           value={data}

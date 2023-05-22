@@ -1,9 +1,10 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 export default function Header() {
   const location = useLocation();
   const [currentUrl, setCurrentUrl] = useState(location.pathname);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setCurrentUrl(location.pathname);
@@ -42,7 +43,10 @@ export default function Header() {
           )}
         </Link>
       </div>
-      <div className="flex flex-row justify-end align-middle text-2xl gap-2">
+      <div
+        className="flex flex-row justify-end align-middle text-2xl gap-2 cursor-pointer transition ease-in-out hover:scale-110 active:brightness-50"
+        onClick={() => navigate('/login')}
+      >
         <div className="self-center">John Doe</div>
         <div className=" flex rounded-full bg-2 text-bw3 w-9 h-9 place-content-center border-2 border-bw3 self-center">
           <i

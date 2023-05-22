@@ -236,7 +236,6 @@ function Search() {
         type="text"
         name="search"
         id="search"
-        // onChange={handleSearch}
         placeholder="Search"
         className="bg-transparent flex-1 text-body font-main focus:outline-none"
       />

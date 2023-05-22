@@ -5,32 +5,32 @@ import { useNavigate } from 'react-router-dom';
 export default function Login() {
   const navigate = useNavigate();
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden">
       <img
         src={loginBg}
         alt="login"
-        className="w-full h-screen object-cover select-none z-0 "
+        className="w-full h-screen object-cover select-none z-0"
         draggable="false"
       />
       <div className="left-0 top-0 h-screen w-full z-20 absolute flex items-center justify-center select-none drop-shadow-xl">
-        <div className="bg-bw1 rounded-main p-8 text-center">
+        <div className="bg-bw1 rounded-main p-6 text-center w-5/6 md:max-w-fit mb-44 md:mb-0">
           <img
             src={logo}
             alt="logo"
-            className="w-40 mx-auto mb-2"
+            className="w-24 md:w-40 mx-auto md:mb-2"
             draggable="false"
           />
-          <div className="font-montserrat font-bold text-h2 text-Primary leading-none">
+          <div className="font-montserrat font-bold text-h4 text-Primary md:leading-none md:text-h2">
             Selamat datang!
           </div>
-          <div className="font-montserrat font-regular text-title1 leading-none text-Primary">
+          <div className="font-montserrat font-regular text-body md:text-title1 leading-none text-Primary">
             masukan informasi login anda.
           </div>
-          <div className="flex flex-col text-left gap-3 mt-8">
+          <div className="flex flex-col text-left gap-3 mt-4 mb:mt-8">
             <div>
               <label
                 htmlFor="NIM"
-                className="font-main text-title2 text-bw4 ml-2"
+                className="font-main text-body md:text-title2 text-bw4 ml-2 "
               >
                 NIK
               </label>
@@ -39,13 +39,13 @@ export default function Login() {
                 name="NIK"
                 id="NIK"
                 placeholder="05912348509"
-                className="bg-transparent flex-1 text-title2 font-main focus:outline-none flex flex-row border border-bw3 bg-bw1 rounded-main px-3.5 py-4 w-full h-fit"
+                className="bg-transparent flex-1 text-body md:text-title2 font-main focus:outline-none flex flex-row border border-bw3 bg-bw1 rounded-main py-2.5 px-3 md:px-3.5 md:py-4 w-full h-fit"
               />
             </div>
             <div>
               <label
                 htmlFor="password"
-                className="font-main text-title2 text-bw4 ml-2 mt-5 "
+                className="font-main text-body md:text-title2 text-bw4 ml-2 "
               >
                 Password
               </label>
@@ -54,12 +54,12 @@ export default function Login() {
                 name="password"
                 id="password"
                 placeholder="******"
-                className="bg-transparent flex-1 text-title2 font-main focus:outline-none flex flex-row border border-bw3 bg-bw1 rounded-main px-3.5 py-4 w-full h-fit"
+                className="bg-transparent flex-1 text-body md:text-title2 font-main focus:outline-none flex flex-row border border-bw3 bg-bw1 rounded-main py-2.5 px-3 md:px-3.5 md:py-4 w-full h-fit"
               />
             </div>
             <button
               onClick={() => navigate('/dashboard')}
-              className="flex flex-row px-3.5 py-2.5 justify-center items-center bg-Primary rounded-main font-main text-title1 text-bw2 font-semibold border-2 hover:brightness-110 active:brightness-90 select-none mt-3"
+              className="flex flex-row px-2.5 py-1.5  md:px-3.5 justify-center items-center bg-Primary rounded-main font-main text-title1 text-bw2 font-semibold border-2 hover:brightness-110 active:brightness-90 select-none mt-3"
             >
               Login
             </button>

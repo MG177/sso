@@ -29,15 +29,15 @@ export default function Login() {
           <div className="flex flex-col text-left gap-3 mt-4 mb:mt-8">
             <div>
               <label
-                htmlFor="NIM"
-                className="font-main text-body sm:text-title2 text-bw4 ml-2 "
+                htmlFor="Noreg"
+                className="font-main text-body sm:text-title2 text-bw4 ml-2"
               >
-                NIK
+                Noreg
               </label>
               <input
                 type="text"
-                name="NIK"
-                id="NIK"
+                name="Noreg"
+                id="Noreg"
                 placeholder="05912348509"
                 className="bg-transparent flex-1 text-body sm:text-title2 font-main focus:outline-none flex flex-row border border-bw3 bg-bw1 rounded-main py-2.5 px-3 sm:px-3.5 sm:py-4 w-full h-fit"
               />
@@ -45,7 +45,7 @@ export default function Login() {
             <div>
               <label
                 htmlFor="password"
-                className="font-main text-body sm:text-title2 text-bw4 ml-2 "
+                className="font-main text-body sm:text-title2 text-bw4 ml-2"
               >
                 Password
               </label>

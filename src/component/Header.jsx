@@ -10,17 +10,15 @@ export default function Header() {
     setCurrentUrl(location.pathname);
   }, [location.pathname]);
 
-  console.log(currentUrl);
-
   return (
-    <div className="flex flex-row top-0 justify-between sticky px-5 py-5 bg-bw1 h-fit rounded-b-main shadow offset-y-1px blur-14 font-semibold font-main text-bw3 min-w-fit">
-      <div className="flex flex-row gap-4 text-title1">
+    <div className="flex flex-row top-0 justify-between sticky px-5 py-2 bg-bw1 h-fit rounded-b-main shadow offset-y-1px blur-14 font-semibold font-main text-bw3 min-w-fit z-20">
+      <div className="flex flex-row gap-4 text-title2">
         <Link
           to="/dashboard/log"
           className="flex flex-col align-middle gap-1 mx-1 transition ease-in-out hover:scale-110"
         >
           <div>User Log</div>
-          {location.pathname.startsWith('/dashboard/log') && (
+          {currentUrl.startsWith('/dashboard/log') && (
             <hr className="bg-bw4 h-0.5 border-0"></hr>
           )}
         </Link>
@@ -29,7 +27,7 @@ export default function Header() {
           className="flex flex-col align-middle gap-1 mx-1 transition ease-in-out hover:scale-110"
         >
           <div>User Manager</div>
-          {location.pathname.startsWith('/dashboard/userManager') && (
+          {currentUrl.startsWith('/dashboard/userManager') && (
             <hr className="bg-bw4 h-0.5 border-0"></hr>
           )}
         </Link>
@@ -38,7 +36,7 @@ export default function Header() {
           className="flex flex-col align-middle gap-1 mx-1 transition ease-in-out hover:scale-110"
         >
           <div>App Manager</div>
-          {location.pathname.startsWith('/dashboard/appManager') && (
+          {currentUrl.startsWith('/dashboard/appManager') && (
             <hr className="bg-bw4 h-0.5 border-0"></hr>
           )}
         </Link>

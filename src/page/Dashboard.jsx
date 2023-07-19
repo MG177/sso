@@ -13,6 +13,7 @@ export default function Dashboard() {
       <Header />
       <div className="mx-5">
         <Routes>
+          <Route path="/" element={<Log />} />
           <Route path="/log" element={<Log />} />
           <Route path="/userManager" element={<UserManager />} />
           <Route path="/appManager" element={<AppManager />} />
@@ -45,24 +46,25 @@ function Log() {
       <div className="w-full h-fit bg-bw2">
         <div className="flex flex-row justify-between items-end mb-5">
           <h1 className="font-main font-semibold text-h1 text-bw4">User Log</h1>
+          {/* <p className="font-main font-semibold text-bw4">{user}</p> */}
         </div>
         <div className="flex flex-row justify-between items-end mb-5">
           <Search />
         </div>
       </div>
-      <div className="h-[70vh] rounded-main shadow-lg border-bw2 overflow-hidden bg-bw1">
+      <div className="rounded-main shadow-lg border-bw2 overflow-hidden bg-bw1">
         <DataTable
           ref={dt}
           value={log}
           paginator
-          rows={15}
-          rowsPerPageOptions={[15, 25, 50]}
+          rows={25}
+          rowsPerPageOptions={[25, 50, 100]}
           size="sm"
           sortField="id"
           sortOrder={1}
           removableSort
           scrollable
-          scrollHeight="flex"
+          scrollHeight="calc(100vh - 300px)"
           rounded
           // paginatorRight={footer}
           // paginatorLeft={<div></div>}
@@ -139,7 +141,7 @@ function UserManager() {
           <Search />
         </div>
       </div>
-      <div className="h-[70vh] rounded-main shadow-lg border-bw2 overflow-hidden bg-bw1">
+      <div className="rounded-main shadow-lg border-bw2 overflow-hidden bg-bw1">
         <DataTable
           ref={dt}
           value={data}
@@ -151,7 +153,7 @@ function UserManager() {
           sortOrder={-1}
           removableSort
           scrollable
-          scrollHeight="flex"
+          scrollHeight="calc(100vh - 300px)"
           rounded
           // paginatorRight={footer}
           // paginatorLeft={<div></div>}

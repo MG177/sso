@@ -1,36 +1,39 @@
 import loginBg from '../assets/bg.svg';
 import logo from '../assets/Lumen.svg';
 import { useNavigate } from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 export default function Login() {
   const navigate = useNavigate();
+  const { loginWithRedirect } = useAuth0();
   return (
     <div className="relative overflow-hidden">
       <img
         src={loginBg}
         alt="login"
-        className="w-full h-screen object-cover select-none z-0"
+        className="z-0 object-cover w-full h-screen select-none"
         draggable="false"
       />
-      <div className="left-0 top-0 h-screen w-full z-20 absolute flex items-center justify-center select-none drop-shadow-xl">
-        <div className="bg-bw1 rounded-main p-6 text-center w-5/6 sm:max-w-fit mb-44 sm:mb-0">
+      <div className="absolute top-0 left-0 z-20 flex items-center justify-center w-full h-screen select-none drop-shadow-xl">
+        <div className="w-5/6 p-6 text-center bg-bw1 rounded-main sm:max-w-fit mb-44 sm:mb-0">
           <img
             src={logo}
             alt="logo"
-            className="w-24 sm:w-40 mx-auto sm:mb-2"
+            className="w-24 mx-auto sm:w-40 sm:mb-2"
             draggable="false"
           />
-          <div className="font-montserrat font-bold text-h4 text-Primary sm:leading-none sm:text-h2">
+          <div className="font-bold font-montserrat text-h4 text-Primary sm:leading-none sm:text-h2">
             Selamat datang!
           </div>
-          <div className="font-montserrat font-regular text-body sm:text-title1 leading-none text-Primary">
+          <div className="leading-none font-montserrat font-regular text-body sm:text-title1 text-Primary">
             masukan informasi login anda.
           </div>
-          <div className="flex flex-col text-left gap-3 mt-4 mb:mt-8">
+          <div className="flex flex-col gap-3 mt-4 text-left mb:mt-8">
             <div>
               <label
                 htmlFor="Noreg"
-                className="font-main text-body sm:text-title2 text-bw4 ml-2"
+                className="ml-2 font-main text-body sm:text-title2 text-bw4"
               >
                 Noreg
               </label>
@@ -45,7 +48,7 @@ export default function Login() {
             <div>
               <label
                 htmlFor="password"
-                className="font-main text-body sm:text-title2 text-bw4 ml-2"
+                className="ml-2 font-main text-body sm:text-title2 text-bw4"
               >
                 Password
               </label>
@@ -58,7 +61,8 @@ export default function Login() {
               />
             </div>
             <button
-              onClick={() => navigate('/dashboard')}
+              // onClick={() => navigate('/dashboard')}
+              onClick={() => loginWithRedirect()}
               className="flex flex-row px-2.5 py-1.5  sm:px-3.5 justify-center items-center bg-Primary rounded-main font-main text-title1 text-bw2 font-semibold border-2 hover:brightness-110 active:brightness-90 select-none mt-3"
             >
               Login

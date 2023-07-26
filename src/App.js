@@ -2,6 +2,7 @@ import './App.css';
 import Dashboard from './page/Dashboard';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import not_found from './assets/404 Error-bro.svg';
+import { AuthenticationGuard } from './AuthenticationGuard';
 
 //theme
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
@@ -16,9 +17,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route
+          path="/*"
+          element={<AuthenticationGuard component={Dashboard} />}
+        />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard/*" element={<Dashboard />} />
         <Route
           path="*"
           element={

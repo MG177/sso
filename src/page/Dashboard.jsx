@@ -5,9 +5,16 @@ import { Column } from 'primereact/column';
 import { useEffect, useRef, useState } from 'react';
 import log from '../dummy/userLog';
 import data from '../dummy/userData';
+import { useAuth0 } from "@auth0/auth0-react";
 import app from '../dummy/appData';
 
 export default function Dashboard() {
+  const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
+  // if (isLoading) return <div>Loading...</div>
+  if (!isAuthenticated && !isLoading) {
+    loginWithRedirect();
+  }
+
   return (
     <div className="">
       <Header />
@@ -29,9 +36,8 @@ function Log() {
     const { status } = rowData;
     return (
       <div
-        className={`${
-          status.isSuccess ? 'text-green-500' : 'text-red-500'
-        } font-main font-semibold`}
+        className={`${status.isSuccess ? 'text-green-500' : 'text-red-500'
+          } font-main font-semibold`}
       >
         {status.message}
       </div>
@@ -44,15 +50,15 @@ function Log() {
   return (
     <div>
       <div className="w-full h-fit bg-bw2">
-        <div className="flex flex-row justify-between items-end mb-5">
-          <h1 className="font-main font-semibold text-h1 text-bw4">User Log</h1>
-          {/* <p className="font-main font-semibold text-bw4">{user}</p> */}
+        <div className="flex flex-row items-end justify-between mb-5">
+          <h1 className="font-semibold font-main text-h1 text-bw4">User Log</h1>
+          {/* <p className="font-semibold font-main text-bw4">{user}</p> */}
         </div>
-        <div className="flex flex-row justify-between items-end mb-5">
+        <div className="flex flex-row items-end justify-between mb-5">
           <Search />
         </div>
       </div>
-      <div className="rounded-main shadow-lg border-bw2 overflow-hidden bg-bw1">
+      <div className="overflow-hidden shadow-lg rounded-main border-bw2 bg-bw1">
         <DataTable
           ref={dt}
           value={log}
@@ -66,8 +72,8 @@ function Log() {
           scrollable
           scrollHeight="calc(100vh - 300px)"
           rounded
-          // paginatorRight={footer}
-          // paginatorLeft={<div></div>}
+        // paginatorRight={footer}
+        // paginatorLeft={<div></div>}
         >
           <Column field="id" header="No." />
           <Column field="nim" header="NIP/NIM" className="font-bold" />
@@ -113,7 +119,6 @@ function UserManager() {
   const handleViewDetails = (rowData) => {
     const { nim, id, name, role } = rowData;
     const dialog = document.querySelector('#dialog');
-    console.log(passwordEditor);
     return (
       <div className="flex justify-center w-fit">
         <Button
@@ -129,19 +134,20 @@ function UserManager() {
     );
   };
 
+
   return (
     <div>
       <div className="w-full h-fit bg-bw2">
-        <div className="flex flex-row justify-between items-end mb-5">
-          <h1 className="font-main font-semibold text-h1 text-bw4">
+        <div className="flex flex-row items-end justify-between mb-5">
+          <h1 className="font-semibold font-main text-h1 text-bw4">
             User Manager
           </h1>
         </div>
-        <div className="flex flex-row justify-between items-end mb-5">
+        <div className="flex flex-row items-end justify-between mb-5">
           <Search />
         </div>
       </div>
-      <div className="rounded-main shadow-lg border-bw2 overflow-hidden bg-bw1">
+      <div className="overflow-hidden shadow-lg rounded-main border-bw2 bg-bw1">
         <DataTable
           ref={dt}
           value={data}
@@ -155,8 +161,8 @@ function UserManager() {
           scrollable
           scrollHeight="calc(100vh - 300px)"
           rounded
-          // paginatorRight={footer}
-          // paginatorLeft={<div></div>}
+        // paginatorRight={footer}
+        // paginatorLeft={<div></div>}
         >
           <Column field="id" header="No." />
           <Column field="nim" header="NIP/NIM" className="font-bold" />
@@ -165,18 +171,18 @@ function UserManager() {
           <Column body={handleViewDetails} header="View Details" />
         </DataTable>
       </div>
-      <dialog className="h-fit rounded-main w-fit p-0" id="dialog">
+      <dialog className="p-0 h-fit rounded-main w-fit" id="dialog">
         <div className="flex flex-row justify-between items-center gap-52 bg-bw2 py-3.5 px-6 ">
           <span className="font-semibold font-main text-bw3 text-h5">
             User Details
           </span>
           <i
-            className="pi pi-times cursor-pointer transition ease-in-out hover:scale-110"
+            className="transition ease-in-out cursor-pointer pi pi-times hover:scale-110"
             onClick={closeModal}
           />
         </div>
         <div className="p-5">
-          <div className="grid grid-cols-2 font-main text-title1 text-bw3 font-semibold ">
+          <div className="grid grid-cols-2 font-semibold font-main text-title1 text-bw3 ">
             <div>Nim</div>
             <div>: {user.nim}</div>
             <div>Name</div>
@@ -184,7 +190,7 @@ function UserManager() {
             <div>Role Title:</div>
             <div>: {user.role}</div>
           </div>
-          <div className=" my-3">
+          <div className="my-3 ">
             <div
               className={`flex flex-col gap-3 ${!passwordEditor && 'hidden'}`}
             >
@@ -204,9 +210,8 @@ function UserManager() {
             <div className="grid grid-cols-1">
               <hr className="bg-bw4 h-0.5 border-0 w-full"></hr>
               <i
-                className={`pi pi-chevron-down cursor-pointer w-fit justify-self-end ${
-                  passwordEditor && 'rotate-180 order-first'
-                }`}
+                className={`pi pi-chevron-down cursor-pointer w-fit justify-self-end ${passwordEditor && 'rotate-180 order-first'
+                  }`}
                 onClick={handlePasswordEditor}
               />
             </div>
@@ -229,7 +234,7 @@ function Search() {
   return (
     <div className="flex flex-row border border-bw3 bg-bw1 rounded-main px-3.5 py-2 w-full h-fit">
       <span
-        className="input-group-text flex items-center rounded pr-3 text-center text-base font-normal text-black"
+        className="flex items-center pr-3 text-base font-normal text-center text-black rounded input-group-text"
         id="basic-addon2"
       >
         <i className="text-black pi pi-search" />
@@ -239,7 +244,7 @@ function Search() {
         name="search"
         id="search"
         placeholder="Search"
-        className="bg-transparent flex-1 text-body font-main focus:outline-none"
+        className="flex-1 bg-transparent text-body font-main focus:outline-none"
       />
     </div>
   );

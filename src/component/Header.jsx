@@ -1,21 +1,28 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Header() {
   const location = useLocation();
   const [currentUrl, setCurrentUrl] = useState(location.pathname);
   const navigate = useNavigate();
+  const { loginWithRedirect, logout } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
+
+
 
   useEffect(() => {
     setCurrentUrl(location.pathname);
   }, [location.pathname]);
 
+
   return (
-    <div className="flex flex-row top-0 justify-between sticky px-5 py-2 bg-bw1 h-fit rounded-b-main shadow offset-y-1px blur-14 font-semibold font-main text-bw3 min-w-fit z-20">
+    <div className="sticky top-0 z-20 flex flex-row justify-between px-5 py-2 font-semibold shadow bg-bw1 h-fit rounded-b-main offset-y-1px blur-14 font-main text-bw3 min-w-fit">
       <div className="flex flex-row gap-4 text-title2">
         <Link
           to="/dashboard/log"
-          className="flex flex-col align-middle gap-1 mx-1 transition ease-in-out hover:scale-110"
+          className="flex flex-col gap-1 mx-1 align-middle transition ease-in-out hover:scale-110"
         >
           <div>User Log</div>
           {currentUrl.startsWith('/dashboard/log') && (
@@ -24,7 +31,7 @@ export default function Header() {
         </Link>
         <Link
           to="/dashboard/userManager"
-          className="flex flex-col align-middle gap-1 mx-1 transition ease-in-out hover:scale-110"
+          className="flex flex-col gap-1 mx-1 align-middle transition ease-in-out hover:scale-110"
         >
           <div>User Manager</div>
           {currentUrl.startsWith('/dashboard/userManager') && (
@@ -33,7 +40,7 @@ export default function Header() {
         </Link>
         <Link
           to="/dashboard/appManager"
-          className="flex flex-col align-middle gap-1 mx-1 transition ease-in-out hover:scale-110"
+          className="flex flex-col gap-1 mx-1 align-middle transition ease-in-out hover:scale-110"
         >
           <div>App Manager</div>
           {currentUrl.startsWith('/dashboard/appManager') && (
@@ -41,19 +48,40 @@ export default function Header() {
           )}
         </Link>
       </div>
-      <div
-        className="flex flex-row justify-end align-middle text-2xl gap-2 cursor-pointer transition ease-in-out hover:scale-110 active:brightness-50"
-        onClick={() => navigate('/login')}
-      >
-        <div className="self-center">John Doe</div>
-        <div className=" flex rounded-full bg-2 text-bw3 w-9 h-9 place-content-center border-2 border-bw3 self-center">
-          <i
-            className="pi pi-user h-fit self-center"
-            aria-label="User"
-            style={{ fontSize: '1.5rem' }}
-          />
-        </div>
+      <div className='flex flex-row gap-5'>
+        {isAuthenticated && (
+          <>
+            <div
+              className="flex flex-row justify-end gap-2 text-2xl align-middle transition ease-in-out cursor-pointer hover:scale-110 active:brightness-50"
+              // onClick={() => navigate('/login')}
+              onClick={() => logout()}
+            >
+              <div className="self-center">{user.name || "Your name"}</div>
+              <div className="flex self-center border-2 rounded-full bg-2 text-bw3 w-9 h-9 place-content-center border-bw3">
+                <i
+                  className="self-center pi pi-user h-fit"
+                  aria-label="User"
+                  style={{ fontSize: '1.5rem' }}
+                />
+              </div>
+            </div>
+            {/* <button onClick={() => logout()}>
+              Logout
+            </button> */}
+          </>
+        )}
+        {/* {!isAuthenticated && (
+          <>
+            <button onClick={() => loginWithRedirect()}>
+              Login
+            </button>
+
+            <button onClick={() => logout()}>
+              Logout
+            </button>
+          </>
+        )} */}
       </div>
     </div>
-  );
+  )
 }

@@ -22,7 +22,7 @@ function App() {
         <Route
           path="*"
           element={
-            <div className="w-full h-screen flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center justify-center w-full h-screen">
               <img src={not_found} className="object-contain w-[80vh]" />
               <Link
                 to="/"
